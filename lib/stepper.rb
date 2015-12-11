@@ -10,16 +10,16 @@ class Stepper
   ARDUINO.digital_write PIN_DIR, true
   ARDUINO.digital_write PIN_STEP, false
 
-  def self.turn( opts = {} )
-    step = opts[:step] || 100
+  def self.turn(opts = {})
+    step = Integer(opts[:step] || 100)
     direction = opts[:direction] || :up
-    speed = opts[:speed] || 75
+    speed = Integer(opts[:speed] || 75)
     # Convert speed to pause time
     time = (100 - speed) / 1000.0
 
     if direction == :down
       ARDUINO.digital_write PIN_DIR, false
-    else
+    else direction
       ARDUINO.digital_write PIN_DIR, true
     end
 
