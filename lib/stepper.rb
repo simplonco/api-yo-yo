@@ -12,7 +12,7 @@ class Stepper
 
   def self.turn(opts = {})
     step = Integer(opts[:step] || 100)
-    direction = opts[:direction] || :up
+    direction = opts[:direction] || :down
     speed = Integer(opts[:speed] || 75)
     # Convert speed to pause time
     time = (100 - speed) / 1000.0
