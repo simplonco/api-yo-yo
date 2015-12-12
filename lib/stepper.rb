@@ -5,14 +5,14 @@ class Stepper
   PIN_STEP = 9
   PIN_DIR = 8
 
-  @arduino = ArduinoFirmata.connect '/dev/tty.wchusbserialfa130'
+  @arduino = ArduinoFirmata.connect# '/dev/tty.wchusbserialfa130'
 
   @arduino.digital_write PIN_DIR, true
   @arduino.digital_write PIN_STEP, false
 
   def self.turn(opts = {})
-    @arduino = ArduinoFirmata.connect '/dev/tty.wchusbserialfa130'
-    
+    @arduino = ArduinoFirmata.connect# '/dev/tty.wchusbserialfa130'
+
     step = Integer(opts[:step] || 100)
     direction = opts[:direction] || :down
     speed = Integer(opts[:speed] || 75)
