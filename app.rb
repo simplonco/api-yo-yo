@@ -1,6 +1,7 @@
 require 'sinatra'
 require 'json'
-require './lib/stepper'
+require './lib/stepper_wrapper'
+require 'pry'
 
 def query
   params.map{|key, value| "#{key}=#{value}"}.join("&")
@@ -10,7 +11,7 @@ get '/turn' do
   content_type :json
 
   begin
-  	Stepper.turn(step: params[:step], direction: params[:direction], speed: params[:speed])
+  	StepperWrapper.turn(step: params[:step], direction: params[:direction], speed: params[:speed])
   	{status: true, message: 'success'}.to_json
   rescue Exception => e
   	message = e.message
